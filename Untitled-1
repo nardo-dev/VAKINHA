@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Minha Causa — Doe agora</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+      color: #1a1a1a;
+      background: #fff;
+      line-height: 1.6;
+    }
+
+    /* ===== HEADER ===== */
+    .header {
+      background: #fff;
+      border-bottom: 1px solid #eee;
+      padding: 16px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .logo {
+      font-size: 22px;
+      font-weight: 800;
+      color: #f5a623;
+      text-decoration: none;
+    }
+
+    .header-btn {
+      background: #f5a623;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 24px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .header-btn:hover { background: #e09520; }
+
+    /* ===== HERO / CAPA ===== */
+    .hero {
+      position: relative;
+      width: 100%;
+      height: 480px;
+      overflow: hidden;
+    }
+
+    .hero img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .hero-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(transparent, rgba(0,0,0,0.7));
+      padding: 40px 24px 24px;
+      color: #fff;
+    }
+
+    .hero-title {
+      font-size: 32px;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+
+    .hero-subtitle {
+      font-size: 16px;
+      opacity: 0.9;
+    }
+
+    /* ===== CONTEÚDO PRINCIPAL ===== */
+    .container {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 32px 24px;
+    }
+
+    /* ===== BLOCO DE DOAÇÃO ===== */
+    .donation-box {
+      background: #fff;
+      border: 2px solid #f5a623;
+      border-radius: 12px;
+      padding: 24px;
+      margin-bottom: 32px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    }
+
+    .progress-label {
+      display: flex;
+      justify-content: space-between;
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .progress-bar {
+      width: 100%;
+      height: 12px;
+      background: #eee;
+      border-radius: 6px;
+      overflow: hidden;
+      margin-bottom: 16px;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: #f5a623;
+      border-radius: 6px;
+      transition: width 0.5s ease;
+    }
+
+    .amounts {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+
+    .amount-btn {
+      padding: 12px;
+      border: 2px solid #ddd;
+      border-radius: 8px;
+      background: #fff;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .amount-btn:hover { border-color: #f5a623; }
+
+    .amount-btn.active {
+      border-color: #f5a623;
+      background: #fff8ed;
+      color: #e09520;
+    }
+
+    .custom-amount {
+      width: 100%;
+      padding: 14px;
+      border: 2px solid #ddd;
+      border-radius: 8px;
+      font-size: 16px;
+      margin-bottom: 16px;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .custom-amount:focus { border-color: #f5a623; }
+
+    .doar-btn {
+      width: 100%;
+      padding: 16px;
+      background: #f5a623;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      font-size: 18px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .doar-btn:hover { background: #e09520; }
+
+    /* ===== HISTÓRIA ===== */
+    .story-section {
+      margin-bottom: 32px;
+    }
+
+    .story-section h2 {
+      font-size: 24px;
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+
+    .story-section p {
+      font-size: 16px;
+      color: #444;
+      margin-bottom: 16px;
+    }
+
+    /* ===== DOADORES ===== */
+    .donors-section {
+      margin-bottom: 32px;
+    }
+
+    .donors-section h2 {
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+
+    .donor-item {
+      display: flex;
+      align-items: center;
+      padding: 12px 0;
+      border-bottom: 1px solid #eee;
+    }
+
+    .donor-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: #f5a623;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      margin-right: 12px;
+    }
+
+    .donor-info {
+      flex: 1;
+    }
+
+    .donor-name {
+      font-weight: 600;
+      font-size: 14px;
+    }
+
+    .donor-time {
+      font-size: 12px;
+      color: #888;
+    }
+
+    .donor-value {
+      font-weight: 700;
+      color: #f5a623;
+      font-size: 14px;
+    }
+
+    /* ===== RODAPÉ ===== */
+    .footer {
+      background: #f8f8f8;
+      padding: 32px 24px;
+      text-align: center;
+      font-size: 13px;
+      color: #888;
+    }
+
+    .footer a {
+      color: #f5a623;
+      text-decoration: none;
+    }
+
+    /* ===== RESPONSIVO ===== */
+    @media (max-width: 600px) {
+      .hero { height: 320px; }
+      .hero-title { font-size: 24px; }
+      .amounts { grid-template-columns: repeat(2, 1fr); }
+      .container { padding: 24px 16px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <div class="header">
+    <a href="#" class="logo">Minha Causa</a>
+    <button class="header-btn" onclick="scrollParaDoar()">Doar agora</button>
+  </div>
+
+  <!-- CAPA -->
+  <div class="hero">
+    <!-- Troque pela sua imagem -->
+    <img src="https://images.unsplash.com/photo-1559027615-cd4628902d4a?w=1200&q=80" alt="Campanha" />
+    <div class="hero-overlay">
+      <h1 class="hero-title">Ajude o João a se recuperar da cirurgia</h1>
+      <p class="hero-subtitle">Cada doação aproxima mais o João de voltar para casa.</p>
+    </div>
+  </div>
+
+  <!-- CONTEÚDO -->
+  <div class="container">
+
+    <!-- BLOCO DE DOAÇÃO -->
+    <div class="donation-box" id="doar">
+      <div class="progress-label">
+        <span>R$ 3.450 arrecadados</span>
+        <span>Meta: R$ 5.000</span>
+      </div>
+      <div class="progress-bar">
+        <div class="progress-fill" style="width: 69%"></div>
+      </div>
+
+      <div class="amounts">
+        <button class="amount-btn" data-valor="25">R$ 25</button>
+        <button class="amount-btn active" data-valor="50">R$ 50</button>
+        <button class="amount-btn" data-valor="100">R$ 100</button>
+        <button class="amount-btn" data-valor="200">R$ 200</button>
+        <button class="amount-btn" data-valor="500">R$ 500</button>
+        <button class="amount-btn" data-valor="outro">Outro</button>
+      </div>
+
+      <input type="number" class="custom-amount" id="customAmount" placeholder="Digite outro valor (R$)" min="1" style="display:none;" />
+
+      <button class="doar-btn" id="btnDoar">Doar R$ 50</button>
+    </div>
+
+    <!-- HISTÓRIA -->
+    <div class="story-section">
+      <h2>A história</h2>
+      <p>O João sofreu um acidente e precisa de uma cirurgia que custará R$ 5.000. O plano de saúde não cobre o procedimento e a família está pedindo ajuda para cobrir os custos.</p>
+      <p>Toda doação, independente do valor, faz diferença. O dinheiro será usado exclusivamente para a cirurgia e os cuidados pós-operatórios.</p>
+      <p>Agradecemos de coração a todos que contribuírem. A transparência é nossa prioridade: enviaremos comprovantes e atualizações sobre a recuperação do João.</p>
+    </div>
+
+    <!-- ÚLTIMOS DOADORES -->
+    <div class="donors-section">
+      <h2>Últimas doações</h2>
+      <div class="donor-item">
+        <div class="donor-avatar">M</div>
+        <div class="donor-info">
+          <div class="donor-name">Maria S.</div>
+          <div class="donor-time">há 2 horas</div>
+        </div>
+        <div class="donor-value">R$ 50</div>
+      </div>
+      <div class="donor-item">
+        <div class="donor-avatar">C</div>
+        <div class="donor-info">
+          <div class="donor-name">Carlos A.</div>
+          <div class="donor-time">há 5 horas</div>
+        </div>
+        <div class="donor-value">R$ 100</div>
+      </div>
+      <div class="donor-item">
+        <div class="donor-avatar">A</div>
+        <div class="donor-info">
+          <div class="donor-name">Ana P.</div>
+          <div class="donor-time">há 1 dia</div>
+        </div>
+        <div class="donor-value">R$ 25</div>
+      </div>
+      <div class="donor-item">
+        <div class="donor-avatar">R</div>
+        <div class="donor-info">
+          <div class="donor-name">Roberto L.</div>
+          <div class="donor-time">há 1 dia</div>
+        </div>
+        <div class="donor-value">R$ 200</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- RODAPÉ -->
+  <div class="footer">
+    <p><strong>Minha Causa</strong> — CNPJ 00.000.000/0001-00</p>
+    <p>
+      <a href="#">Política de Privacidade</a> ·
+      <a href="#">Termos de Uso</a> ·
+      <a href="mailto:contato@suacausa.com.br">Contato</a>
+    </p>
+    <p style="margin-top: 12px;">©️ 2026 Minha Causa. Todos os direitos reservados.</p>
+  </div>
+
+  <script>
+    let valorSelecionado = 50;
+
+    // Botões de valor
+    document.querySelectorAll('.amount-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.amount-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        const input = document.getElementById('customAmount');
+        const btnDoar = document.getElementById('btnDoar');
+
+        if (btn.dataset.valor === 'outro') {
+          input.style.display = 'block';
+          input.focus();
+          btnDoar.textContent = 'Doar';
+        } else {
+          valorSelecionado = parseInt(btn.dataset.valor);
+          input.style.display = 'none';
+          btnDoar.textContent = `Doar R$ ${valorSelecionado}`;
+        }
+      });
+    });
+
+    // Campo de valor personalizado
+    document.getElementById('customAmount').addEventListener('input', (e) => {
+      const v = parseInt(e.target.value);
+      if (v > 0) {
+        valorSelecionado = v;
+        document.getElementById('btnDoar').textContent = `Doar R$ ${v}`;
+      }
+    });
+
+    // Botão Doar
+    document.getElementById('btnDoar').addEventListener('click', () => {
+      if (!valorSelecionado || valorSelecionado <= 0) {
+        alert('Escolha um valor para doar.');
+        return;
+      }
+
+      // ===== AQUI VOCÊ REDIRECIONA PARA O GETAWAY =====
+      // Opção 1: Link direto do Getaway (se usar checkout fixo)
+      // window.location.href = 'https://checkout.getaway.com.br/SEU-LINK';
+
+      // Opção 2: Chamar seu backend para gerar o checkout dinâmico
+      fetch('/api/doar', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ valor: valorSelecionado })
+      })
+        .then(res => res.json())
+        .then(data => {
+          window.location.href = data.url_checkout;
+        })
+        .catch(() => {
+          alert('Erro ao processar a doação. Tente novamente.');
+        });
+    });
+
+    // Scroll suave para o bloco de doação
+    function scrollParaDoar() {
+      document.getElementById('doar').scrollIntoView({ behavior: 'smooth' });
+    }
+  </script>
+
+</body>
+</html>
